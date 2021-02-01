@@ -10,7 +10,7 @@ spec:
     allocatedStorage: 20
     engine: postgres
     engineVersion: "9.6"
-    dbSubnetGroupName: utility-us-east-2c.test-mccullough.dev.k.do.ws.sonos.com
+    dbSubnetGroupName: test-group
     skipFinalSnapshotBeforeDeletion: true
   writeConnectionSecretToRef:
     namespace: crossplane-system
