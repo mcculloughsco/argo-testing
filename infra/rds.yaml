@@ -1,40 +1,16 @@
 apiVersion: database.aws.crossplane.io/v1beta1
-kind: RDSInstanceClass
+kind: RDSInstance
 metadata:
-  labels:
-    engine: mysql
-    region: east
-  name: argo-east-rds
-specTemplate:
-  forProvider:
-    allocatedStorage: 20
-    dbInstanceClass: db.t2.small
-    dbSubnetGroupNameRef:
-      name: argo-east-dbsubnetgroup
-    engine: mysql
-    masterUsername: masteruser
-    skipFinalSnapshotBeforeDeletion: true
-    vpcSecurityGroupIDRefs:
-    - name: argo-east-rds-securitygroup
-  providerRef:
-    name: aws-provider-east
-  reclaimPolicy: Delete
-  writeConnectionSecretsToNamespace: crossplane-system
----
-apiVersion: database.aws.crossplane.io/v1alpha3
-kind: DBSubnetGroup
-metadata:
-  name: argo-east-dbsubnetgroup
+  name: rdspostgresql
 spec:
-  groupName: argo-east-dbsubnetgroup
-  description: K8s vpc to rds
-  subnetIdRefs:
-    - name: us-east-2a.test-mccullough.dev.k.do.ws.sonos.com
-    - name: us-east-2b.test-mccullough.dev.k.do.ws.sonos.com
-    - name: us-east-2c.test-mccullough.dev.k.do.ws.sonos.com
-  tags:
-    - key: name
-      value: argo-east-dbsubnetgroup
-  reclaimPolicy: Delete
-  providerRef:
-    name: aws-provider-east
+  forProvider:
+    region: us-east-2
+    dbInstanceClass: db.t2.small
+    masterUsername: masteruser
+    allocatedStorage: 20
+    engine: postgres
+    engineVersion: "9.6"
+    skipFinalSnapshotBeforeDeletion: true
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: aws-rdspostgresql-conn
