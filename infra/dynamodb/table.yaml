@@ -4,7 +4,7 @@ metadata:
   name: sample-table
 spec:
   forProvider:
-    region: us-east-2
+    region: us-east-1
     attributeDefinitions:
       - attributeName: attribute1
         attributeType: S
