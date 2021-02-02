@@ -13,5 +13,5 @@ spec:
     dbSubnetGroupName: test-group
     skipFinalSnapshotBeforeDeletion: true
   writeConnectionSecretToRef:
-    namespace: crossplane-system
+    namespace: app-argo
     name: aws-rdspostgresql-conn
