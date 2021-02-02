@@ -10,7 +10,7 @@ spec:
     allocatedStorage: 20
     engine: postgres
     engineVersion: "9.6"
-    dbSubnetGroupName: test-group
+    dbSubnetGroupName: crossplane-test
     skipFinalSnapshotBeforeDeletion: true
   writeConnectionSecretToRef:
     namespace: app-argo
